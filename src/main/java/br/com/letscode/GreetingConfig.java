@@ -1,12 +1,12 @@
 package br.com.letscode;
 
-import io.smallrye.config.ConfigMapping;
-import io.smallrye.config.WithName;
+//import io.smallrye.config.ConfigMapping;
+//import io.smallrye.config.WithName;
 
-@ConfigMapping(prefix = "greeting")
+//@ConfigMapping(prefix = "greeting")
 public interface GreetingConfig {
 
-    @WithName("message")
+    // @WithName("message")
     String message();
 
 }
