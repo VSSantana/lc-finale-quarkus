@@ -16,6 +16,9 @@ public class Client {
     private String vatnumber;
     private String email;
 
+    public Client() {
+    }
+
     public Client(String name, Integer age, String vatnumber, String email) {
         this.name = name;
         this.age = age;
