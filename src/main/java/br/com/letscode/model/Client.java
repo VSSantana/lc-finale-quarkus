@@ -6,23 +6,25 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Client {
+public class Client extends PanacheEntityBase {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private Integer age;
-    private String vatnumber;
+    @Column(name = "vat_number")
+    private String vatNumber;
     private String email;
 
     public Client() {
+
     }
 
-    public Client(String name, Integer age, String vatnumber, String email) {
+    public Client(String name, Integer age, String vatNumber, String email) {
         this.name = name;
         this.age = age;
-        this.vatnumber = vatnumber;
+        this.vatNumber = vatNumber;
         this.email = email;
     }
 
@@ -51,11 +53,11 @@ public class Client {
     }
 
     public String getVatnumber() {
-        return vatnumber;
+        return vatNumber;
     }
 
-    public void setVatnumber(String vatnumber) {
-        this.vatnumber = vatnumber;
+    public void setVatnumber(String vatNumber) {
+        this.vatNumber = vatNumber;
     }
 
     public String getEmail() {
@@ -68,7 +70,7 @@ public class Client {
 
     @Override
     public String toString() {
-        return "Client [id=" + id + ", name=" + name + ", age=" + age + ", email=" + email + ", vatnumber=" + vatnumber
+        return "Client [id=" + id + ", name=" + name + ", age=" + age + ", email=" + email + ", vatNumber=" + vatNumber
                 + "]";
     }
 

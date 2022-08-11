@@ -1,4 +1,4 @@
-package br.com.letscode.controller.form;
+package br.com.letscode.form;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;

@@ -8,14 +8,14 @@ import javax.ws.rs.core.MediaType;
 
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
-import br.com.letscode.model.Client;
+import br.com.letscode.model.Category;
 
-@Path("/client/list")
+@Path("/category/list")
 @RegisterRestClient(configKey = "quarkus-api")
-public interface ClientService {
+public class CategoryService {
 
     @GET
     @javax.ws.rs.Produces(MediaType.APPLICATION_JSON)
-    public List<Client> getList();
+    public List<Category> getList();
 
 }

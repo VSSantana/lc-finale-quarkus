@@ -1,4 +1,4 @@
-package br.com.letscode.controller;
+package br.com.letscode.rest;
 
 import java.net.URI;
 import java.util.List;
@@ -10,12 +10,12 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 
-import br.com.letscode.controller.dto.ClientDto;
+import br.com.letscode.dto.ClientDto;
 import br.com.letscode.model.Client;
 import br.com.letscode.repository.ClientRepository;
 
 @Path("/client")
-public class ClienteController {
+public class ClienteResource {
 
     private ClientRepository clientRepository;
 
