@@ -12,7 +12,7 @@ import br.com.letscode.model.Category;
 
 @Path("/category/list")
 @RegisterRestClient(configKey = "quarkus-api")
-public class CategoryService {
+public interface CategoryService {
 
     @GET
     @javax.ws.rs.Produces(MediaType.APPLICATION_JSON)

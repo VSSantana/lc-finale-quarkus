@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
+import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import javax.ws.rs.GET;
@@ -17,12 +18,13 @@ import br.com.letscode.repository.ClientRepository;
 @Path("/client")
 public class ClienteResource {
 
+    @Inject
     private ClientRepository clientRepository;
 
     @GET
     @Path("/list")
     public List<ClientDto> getClients() {
-        List<Client> clients = clientRepository.findAll();
+        List<Client> clients = clientRepository.listAll();
         return ClientDto.convertion(clients);
     }
 

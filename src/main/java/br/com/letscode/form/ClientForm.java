@@ -62,13 +62,13 @@ public class ClientForm {
     }
 
     // Ver esse getOne aí brother...
-    public Client update(Integer id, ClientRepository clientRepository) {
-        Client client = clientRepository.getOne(id);
-        client.setName(this.name);
-        client.setAge(this.age);
-        client.setVatnumber(this.vatnumber);
-        client.setEmail(this.email);
-        return client;
-    }
+    // public Client update(Integer id, ClientRepository clientRepository) {
+    // Client client = clientRepository.getClass();
+    // client.setName(this.name);
+    // client.setAge(this.age);
+    // client.setVatnumber(this.vatnumber);
+    // client.setEmail(this.email);
+    // return client;
+    // }
 
 }
