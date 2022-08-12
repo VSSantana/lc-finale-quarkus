@@ -12,10 +12,15 @@ import br.com.letscode.model.Category;
 
 @Path("/category/list")
 @RegisterRestClient(configKey = "quarkus-api")
-public interface CategoryService {
+public class CategoryService {
+
+    @Inject
+    CategoryRepository categoryRepository;
 
     @GET
-    @javax.ws.rs.Produces(MediaType.APPLICATION_JSON)
-    public List<Category> getList();
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Category> getCategoryList() {
+        return categoryRepository.listAll();
+    }
 
 }

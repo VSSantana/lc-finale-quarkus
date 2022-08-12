@@ -45,15 +45,15 @@ public class ClienteResource {
         return Response.created(uri).build();
     }
 
-    // @RequestMapping("/details/{id}")
-    // @GetMapping
-    // public ResponseEntity<ClientDto> getClient(@PathVariable Integer id) {
-    // Optional<Client> optionalClient = clientRepository.findById(id);
-    // if (optionalClient.isPresent()) {
-    // return ResponseEntity.ok().body(new ClientDto(optionalClient.get()));
-    // }
-    // return ResponseEntity.notFound().build();
-    // }
+    @Path("/details/{id}")
+    @GET
+    public ResponseEntity<ClientDto> getClient(@PathVariable Integer id) {
+        Optional<Client> optionalClient = clientRepository.findById(id);
+        if (optionalClient.isPresent()) {
+            return ResponseEntity.ok().body(new ClientDto(optionalClient.get()));
+        }
+        return ResponseEntity.notFound().build();
+    }
 
     // @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     // @PutMapping

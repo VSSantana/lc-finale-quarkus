@@ -20,19 +20,19 @@ import br.com.letscode.service.CategoryService;
 public class CategoryRessource {
 
     @Inject
-    CategoryRepository categoryRepository;
+    CategoryService categoryService;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Category> getList() {
-        return categoryRepository.listAll();
+    public List<Category> getCategoryList() {
+        return categoryService.listAll();
     }
 
     @POST
     @Transactional
     @Consumes(MediaType.APPLICATION_JSON)
     public void insertCategory(Category category) {
-        categoryRepository.persist(category);
+        categoryService.persist(category);
     }
 
 }
