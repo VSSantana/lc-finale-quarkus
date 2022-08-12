@@ -48,25 +48,24 @@ public class ClienteResource {
     @Path("/details/{id}")
     @GET
     public Response getClient(@Param???? Integer id) {
-        Optional<Client> optionalClient = clientRepository.findById(id);
-        if (optionalClient.isPresent()) {
-            return ResponseEntity.ok().body(new ClientDto(optionalClient.get()));
+        Optional<Client> client = clientService.getClient(id);
+        if (client.isPresent()) {
+            return ResponseEntity.ok().body(new ClientDto(client.get()));
         }
         return ResponseEntity.notFound().build();
     }
 
-    // @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    // @PutMapping
-    // @Transactional
-    // public ResponseEntity<ClientDto> alterClient(@PathVariable Integer id,
-    // @RequestBody @Valid ClientForm clientForm) {
-    // Optional<Client> optionalClient = clientRepository.findById(id);
-    // if (optionalClient.isPresent()) {
-    // Client client = clientForm.update(id, clientRepository);
-    // return ResponseEntity.ok().body(new ClientDto(client));
-    // }
-    // return ResponseEntity.notFound().build();
-    // }
+    @PathVariable("/{id}")
+    @PUT
+    @Transactional
+    public ResponseEntity<ClientDto> alterClient(@PathVariable Long id,
+            @RequestBody @Valid ClientForm clientForm) {
+        Client client = clientService.findById(id, clientForm);
+        if (client != null) {
+            return ResponseEntity.ok().body(new ClientDto(client));
+        }
+        return ResponseEntity.notFound().build();
+    }
 
     // @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     // @DeleteMapping

@@ -29,11 +29,30 @@ public class ClientService {
         return clientRepository.listAll();
     }
 
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Optional<Client> getClient(Long id) {
+        Optional<Client> optionalClient = clientRepository.findById(id);
+        return optionalClient;
+    }
+
     @POST
     @Transactional
     @Consumes(MediaType.APPLICATION_JSON)
     public void insertClient(Client client) {
         clientRepository.persist(client);
+    }
+
+    @PUT
+    @Transactional
+    @Produces(MediaType.APPLICATION_JSON)
+    public Client alterClient(Long id, ClientForm clientForm) {
+        Optional<Client> optionalClient = clientRepository.findById(id);
+        if (optionalClient.isPresent()) {
+            Client client = clientForm.update(id, clientRepository);
+            return client;
+        }
+        return null;
     }
 
 }
