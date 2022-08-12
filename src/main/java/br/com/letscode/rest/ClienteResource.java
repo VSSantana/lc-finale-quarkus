@@ -47,7 +47,7 @@ public class ClienteResource {
 
     @Path("/details/{id}")
     @GET
-    public ResponseEntity<ClientDto> getClient(@PathVariable Integer id) {
+    public Response getClient(@Param???? Integer id) {
         Optional<Client> optionalClient = clientRepository.findById(id);
         if (optionalClient.isPresent()) {
             return ResponseEntity.ok().body(new ClientDto(optionalClient.get()));

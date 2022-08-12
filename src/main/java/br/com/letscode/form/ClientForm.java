@@ -12,7 +12,7 @@ import br.com.letscode.repository.ClientRepository;
 
 public class ClientForm {
 
-    @NotNull
+    @NotNull(message=)
     @Length(min = 5, max = 100)
     private String name;
     @NotNull
