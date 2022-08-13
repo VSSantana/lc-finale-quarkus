@@ -1,3 +1,5 @@
+INSERT INTO category (name) VALUES ('Programador');
+INSERT INTO category (name) VALUES ('Comerciante');
 INSERT INTO client (name, age, vat_number, email) VALUES ('Guido Imbens', 21, '12354236123', 'imbens@gmail.com');
 INSERT INTO client (name, age, vat_number, email) VALUES ('Joshua Angrist', 65, '12354236123', 'angrist@hotmail.com');
 INSERT INTO client (name, age, vat_number, email) VALUES ('Paul Milgrom', 23, '12354236123', 'milgrom@outlook.com');

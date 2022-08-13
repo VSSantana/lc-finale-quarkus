@@ -8,22 +8,25 @@ import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Length;
 
 import br.com.letscode.model.Client;
-import br.com.letscode.repository.ClientRepository;
 
 public class ClientForm {
 
-    @NotNull(message=)
-    @Length(min = 5, max = 100)
+    @NotNull(message = "O nome não pode ser vazio!")
+    @Length(min = 5, max = 100, message = "Observar o tamanho mínimo e máximo para o nome.")
     private String name;
-    @NotNull
-    @Min(18)
+    @NotNull(message = "Idade não pode ser vazio!")
+    @Min(message = "O cliente deve ser maior de idade!", value = 18)
     private Integer age;
-    @NotNull
-    @Pattern(regexp = "^[a-zA-Z]{2}[0-9]{9}")
+    @NotNull(message = "O Vat Number não pode ser vazio!")
+    @Pattern(message = "O padrão para o Vat Number não foi reconhecido!", regexp = "^[a-zA-Z]{2}[0-9]{9}")
     private String vatnumber;
-    @NotNull
-    @Email
+    @NotNull(message = "O email não pode ser vazio!")
+    @Email(message = "Email não possui o formato padrão.")
     private String email;
+
+    public ClientForm() {
+
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -60,15 +63,5 @@ public class ClientForm {
     public Client convertion() {
         return new Client(name, age, vatnumber, email);
     }
-
-    // Ver esse getOne aí brother...
-    // public Client update(Integer id, ClientRepository clientRepository) {
-    // Client client = clientRepository.getClass();
-    // client.setName(this.name);
-    // client.setAge(this.age);
-    // client.setVatnumber(this.vatnumber);
-    // client.setEmail(this.email);
-    // return client;
-    // }
 
 }

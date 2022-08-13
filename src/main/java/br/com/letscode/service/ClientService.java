@@ -1,56 +1,58 @@
 package br.com.letscode.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
 import br.com.letscode.model.Client;
 import br.com.letscode.repository.ClientRepository;
 
-@Path("/client/list")
+@Path("/client")
 @RegisterRestClient(configKey = "quarkus-api")
 public class ClientService {
 
     @Inject
     ClientRepository clientRepository;
 
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<Client> geClienttList() {
+    public List<Client> geClientList() {
         return clientRepository.listAll();
     }
 
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
     public Optional<Client> getClient(Long id) {
-        Optional<Client> optionalClient = clientRepository.findById(id);
+        Optional<Client> optionalClient = clientRepository.findByIdOptional(id);
         return optionalClient;
     }
 
-    @POST
     @Transactional
-    @Consumes(MediaType.APPLICATION_JSON)
-    public void insertClient(Client client) {
+    public Client insertClient(Client client) {
         clientRepository.persist(client);
+        return client;
     }
 
-    @PUT
     @Transactional
-    @Produces(MediaType.APPLICATION_JSON)
-    public Client alterClient(Long id, ClientForm clientForm) {
-        Optional<Client> optionalClient = clientRepository.findById(id);
+    public Client alterClient(Long id, Client clientForm) {
+        Optional<Client> optionalClient = clientRepository.findByIdOptional(id);
         if (optionalClient.isPresent()) {
-            Client client = clientForm.update(id, clientRepository);
-            return client;
+            optionalClient.get().setName(clientForm.getName());
+            optionalClient.get().setAge(clientForm.getAge());
+            optionalClient.get().setVatnumber(clientForm.getVatnumber());
+            optionalClient.get().setEmail(clientForm.getEmail());
+            return optionalClient.get();
+        }
+        return null;
+    }
+
+    @Transactional
+    public Client deleteClient(Long id) {
+        Optional<Client> optionalClient = clientRepository.findByIdOptional(id);
+        if (optionalClient.isPresent()) {
+            clientRepository.deleteById(id);
+            return optionalClient.get();
         }
         return null;
     }
