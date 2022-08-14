@@ -52,8 +52,11 @@ public class ClienteResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response insertClient(@Valid ClientForm clientForm) {
         Client newClient = clientForm.convertion();
-        clientService.insertClient(newClient);
-        return Response.status(Response.Status.CREATED).entity(new ClientDto(newClient)).build();
+        Client createdClient = clientService.insertClient(newClient);
+        if (createdClient != null) {
+            return Response.status(Response.Status.CREATED).entity(new ClientDto(newClient)).build();
+        }
+        return Response.status(Response.Status.NOT_FOUND).build();
     }
 
     @PUT

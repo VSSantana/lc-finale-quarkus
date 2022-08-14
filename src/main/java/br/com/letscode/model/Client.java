@@ -17,16 +17,19 @@ public class Client {
     @Column(name = "vat_number")
     private String vatNumber;
     private String email;
+    @Column(name = "id_category")
+    private Long idCategory;
 
     public Client() {
 
     }
 
-    public Client(String name, Integer age, String vatNumber, String email) {
+    public Client(String name, Integer age, String vatNumber, String email, Long idCategory) {
         this.name = name;
         this.age = age;
         this.vatNumber = vatNumber;
         this.email = email;
+        this.idCategory = idCategory;
     }
 
     public Long getId() {
@@ -69,9 +72,26 @@ public class Client {
         this.email = email;
     }
 
+    public String getVatNumber() {
+        return vatNumber;
+    }
+
+    public void setVatNumber(String vatNumber) {
+        this.vatNumber = vatNumber;
+    }
+
+    public Long getIdCategory() {
+        return idCategory;
+    }
+
+    public void setIdCategory(Long idCategory) {
+        this.idCategory = idCategory;
+    }
+
     @Override
     public String toString() {
         return "Client [id=" + id + ", name=" + name + ", age=" + age + ", email=" + email + ", vatNumber=" + vatNumber
+                + ", idCategory=" + idCategory
                 + "]";
     }
 

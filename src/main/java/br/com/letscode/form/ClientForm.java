@@ -19,10 +19,12 @@ public class ClientForm {
     private Integer age;
     @NotNull(message = "O Vat Number não pode ser vazio!")
     @Pattern(message = "O padrão para o Vat Number não foi reconhecido!", regexp = "^[a-zA-Z]{2}[0-9]{9}")
-    private String vatnumber;
+    private String vatNumber;
     @NotNull(message = "O email não pode ser vazio!")
     @Email(message = "Email não possui o formato padrão.")
     private String email;
+    @NotNull(message = "Necessário informar o código da categoria do cliente.")
+    private Long idCategory;
 
     public ClientForm() {
 
@@ -44,12 +46,12 @@ public class ClientForm {
         return age;
     }
 
-    public void setVatnumber(String vatnumber) {
-        this.vatnumber = vatnumber;
+    public void setVatNumber(String vatNumber) {
+        this.vatNumber = vatNumber;
     }
 
-    public String getVatnumber() {
-        return vatnumber;
+    public String getVatNumber() {
+        return vatNumber;
     }
 
     public void setEmail(String email) {
@@ -60,8 +62,16 @@ public class ClientForm {
         return email;
     }
 
+    public Long getIdCategory() {
+        return idCategory;
+    }
+
+    public void setIdCategory(Long idCategory) {
+        this.idCategory = idCategory;
+    }
+
     public Client convertion() {
-        return new Client(name, age, vatnumber, email);
+        return new Client(name, age, vatNumber, email, idCategory);
     }
 
 }
