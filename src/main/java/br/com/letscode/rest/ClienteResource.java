@@ -96,6 +96,7 @@ public class ClienteResource {
     @DELETE
     @Path("/{id}")
     @Transactional
+    @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary = "Deleta um cliente da base de dados", description = "Deleta um cliente da base de dados")
     @APIResponse(responseCode = "200", description = "Deletar cliente", content = {
             @Content(mediaType = "application/json", schema = @Schema(implementation = Client.class))
@@ -103,7 +104,7 @@ public class ClienteResource {
     public Response deleteClient(@PathParam("id") Long id) {
         Client client = clientService.deleteClient(id);
         if (client != null) {
-            return Response.status(Response.Status.OK).build();
+            return Response.status(Response.Status.OK).entity(new ClientDto(client)).build();
         }
         return Response.status(Response.Status.NOT_FOUND).build();
     }

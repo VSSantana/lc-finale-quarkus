@@ -93,6 +93,7 @@ public class CategoryRessource {
     @DELETE
     @Path("/{id}")
     @Transactional
+    @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary = "Deleta uma categoria da base de dados", description = "Deleta uma categoria da base de dados")
     @APIResponse(responseCode = "200", description = "Deletar categoria", content = {
             @Content(mediaType = "application/json", schema = @Schema(implementation = Category.class))
@@ -100,7 +101,7 @@ public class CategoryRessource {
     public Response deleteCategory(@PathParam("id") Long id) {
         Category category = categoryService.deleteCategory(id);
         if (category != null) {
-            return Response.status(Response.Status.OK).build();
+            return Response.status(Response.Status.OK).entity(new CategoryDto(category)).build();
         }
         return Response.status(Response.Status.NOT_FOUND).build();
     }
