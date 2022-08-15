@@ -100,7 +100,7 @@ public class CategoryRessource {
     public Response deleteCategory(@PathParam("id") Long id) {
         Category category = categoryService.deleteCategory(id);
         if (category != null) {
-            return Response.status(Response.Status.OK).entity(new CategoryDto(category)).build();
+            return Response.status(Response.Status.OK).build();
         }
         return Response.status(Response.Status.NOT_FOUND).build();
     }

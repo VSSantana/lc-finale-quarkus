@@ -103,7 +103,7 @@ public class ClienteResource {
     public Response deleteClient(@PathParam("id") Long id) {
         Client client = clientService.deleteClient(id);
         if (client != null) {
-            return Response.status(Response.Status.OK).entity(new ClientDto(client)).build();
+            return Response.status(Response.Status.OK).build();
         }
         return Response.status(Response.Status.NOT_FOUND).build();
     }
